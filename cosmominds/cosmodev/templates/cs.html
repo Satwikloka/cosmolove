@@ -1,0 +1,88 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block content %}
+<!--main page-->
+<section class="main-page">
+    <!--left-->
+    <div class="left">
+        <div class="left-content">
+            <div>
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <h3 class="left-content-heading">Find your interests</h3>
+            </div>
+            <div>
+                <i class="fa fa-user-friends"></i>
+                <h3 class="left-content-heading">Explore Engineering projects </h3>
+            </div>
+            <div>
+                <i class="fa fa-comment"></i>
+                <h3 class="left-content-heading">Group up with like-minded pals</h3>
+            </div>
+        </div>
+    </div>
+    <!--end of left-->
+    <!--right-->
+    <div class="right">
+        <div class="right-content">
+            <style>h5{color:red;}
+            </style>
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %}
+            <form method='POST' action='' class="right-content-form" >
+                {% csrf_token %}
+           
+                <div  >
+                    
+                        
+                     <input type="text" class="user_info" name='username'  placeholder="Phone, email or username" />
+                
+                     <input type="password" class="password" name='password'  placeholder="Password" />
+                     <label>Forgot Password?</label>
+                     
+                </div>
+                <button type="submit" class="btn-top">Log in</button>   
+            </form>
+               
+            
+            <div class="middle-content">
+                <i class="fa fa-book"></i>
+                <h1>Explore what's happening in the Engineering</h1>
+                <h4>Join CosmoMinds today</h4>
+                <button type="button" class="sign-up main-btn">Sign-up</button>
+                <button type="button" class="log-in main-btn">Log-In</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--end of right-->
+    <!--footer-->
+    <footer class="main-page-footer">
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Apps</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">social media</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Intensions</a></li>
+            <li><a href="#">Developers</a></li>
+            <li><a href="#">&copy;2021 Cosmo Minds</a></li>
+
+
+        </ul>
+
+
+    </footer>
+
+
+
+</section>
+
+
+<!--end of main page -->
+
+{% endblock content %}

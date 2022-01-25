@@ -1,0 +1,314 @@
+{%extends 'cs.html'%}
+{% load static %}
+{% block content %}
+<!--feeds page-->
+<section class="feeds-page">
+    <!--feeds nav-->
+    <nav class="feeds-nav">
+        <div class="icons">
+            <a href="#" class="active"><i class="fas fa-home"></i></a>
+            <a href="#"><i class="fas fa-hashtag"></i></a>
+            <a href="#"><i class="far fa-bell"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search CosmoMinds" class="search-bar-input" />
+        </div>
+        <div class="user">
+            <div class="user-img-wrapper">
+                <img src= >
+            </div>
+            <a href="#" class="user-link">Chakri Chax</a>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </nav>
+
+    <!--end of feeds page-->
+    <!--feeds content-->
+    <div class="feeds-content">
+        <div class="feeds-header">
+            <div class="header-top">
+                <h4>Garage</h4>
+                <i class="far fa-star"></i>
+            </div>
+            <div class="header-post">
+                <div class="header-img-wrapper">
+                    <img src= />
+                </div>
+                <input type="text" placeholder="Document the project emotions here" />
+                <i class="far fa-image"></i>
+                <i class="fas fa-camera"></i>
+                <i class="far fa-chart-bar"></i>
+            </div>
+        </div>
+        <div class="posts" id="tweets">
+<script>
+
+    const tweetsElement = document.getElementById('tweet')
+    const xhr = new XMLHttpRequest()
+    const method = 'GET' // "POST"
+    const url = "feeds"
+    const responseType = "json"
+    function handleDidLike (tweet_id,currentCount){
+        console.log(tweet_id,currentCount)
+        return
+
+    }
+    function LikeBtn(tweet){
+        return "<button class=<i class='far fa-heart btn-small'></i>onclick=handleDidLike("+tweet.id+","+tweet.Likes+")>"+tweet.likes+"Like</button>"
+    }
+    function formatTweetElement(tweet){
+        var formattedTweet= "<div class='post' id='tweet-"+ tweet.id +"'><div class='user-avatar'><img src=><div class='post-content'><h4>satwik</h4><i class='fas fa-check-circle'></i><span>@satwik stranger</span><p class='post-text'>"+tweet.content+
+                    "</p> <div class='post-img'> <img src= /><div class='post-icons'>"+LikeBtn(tweet)+
+                    "</div></div></div></div></div>"
+        return formattedTweet
+    xhr.responseType = responseType
+    xhr.open(method,url)
+    xhr.onload = function(){
+    
+    const serverResponse = xhr.response
+    const listedItems = serverResponse.response//array
+    var finalTweetStr =""
+    var i;
+    for (i=0;i<listedItems.length;i++){
+            
+            var tweetobj = listedItems[i]
+            var currentItem = formatTweetElement(tweetobj)
+            finalTweetStr += currentItem
+
+      }
+      
+    }
+      xhr.send()
+            
+
+
+
+
+
+    }
+                
+                
+                
+</script>
+            
+      
+            
+            
+        }
+            <div class="post">
+                <div class="user-avatar">
+                    <img src=>
+                </div>
+                <div class="post-content">
+                    <div class="post-user-info">
+                        <h4>ISRO</h4>
+                        <i class="fas fa-check-circle"></i>
+                        <span>@INDIA</span>
+                    </div>
+                    <p class="post-text">
+                        This cockpit in aircraft,design was dynamic and threshold propeties in any critical
+                        conditions,Love to work in aerospace blockset and getting experience in work
+                        thank you.......
+                    </p>
+                    <div class="post-img">
+                        <img src= />
+                    </div>
+                    <div class="post-icons">
+                        <i class="far fa-comment"></i>
+                        <i class="fas fa-retweet"></i>
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="user-avatar">
+                    <img src=>
+                </div>
+                <div class="post-content">
+                    <div class="post-user-info">
+                        <h4>kurma</h4>
+                        <i class="fas fa-check-circle"></i>
+                        <span>@Kurma</span>
+                    </div>
+                    <p class="post-text">
+                        This cockpit in aircraft,design was dynamic and threshold propeties in any critical
+                        conditions,Love to work in aerospace blockset and getting experience in work
+                        thank you.......
+                    </p>
+                    <div class="post-img">
+                        <img src= />
+                    </div>
+                    <div class="post-icons">
+                        <i class="far fa-comment"></i>
+                        <i class="fas fa-retweet"></i>
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="user-avatar">
+                    <img src=>
+                </div>
+                <div class="post-content">
+                    <div class="post-user-info">
+                        <h4>satwik</h4>
+                        <i class="fas fa-check-circle"></i>
+                        <span>@satwik stranger</span>
+                    </div>
+                    <p class="post-text">
+                        This cockpit in aircraft,design was dynamic and threshold propeties in any critical
+                        conditions,Love to work in aerospace blockset and getting experience in work
+                        thank you.......
+                    </p>
+                    <div class="post-img">
+                        <img src= />
+                    </div>
+                    <div class="post-icons">
+                        <i class="far fa-comment"></i>
+                        <i class="fas fa-retweet"></i>
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="user-avatar">
+                    <img src=>
+                </div>
+                <div class="post-content">
+                    <div class="post-user-info">
+                        <h4>chax</h4>
+                        <i class="fas fa-check-circle"></i>
+                        <span>@chakri</span>
+                    </div>
+                    <p class="post-text">
+                        This cockpit in aircraft,design was dynamic and threshold propeties in any critical
+                        conditions,Love to work in aerospace blockset and getting experience in work
+                        thank you.......
+                    </p>
+                    <div class="post-img">
+                        <img src=>
+                    </div>
+                    <div class="post-icons">
+                        <i class="far fa-comment"></i>
+                        <i class="fas fa-retweet"></i>
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="user-avatar">
+                    <img src=>
+                </div>
+                <div class="post-content">
+                    <div class="post-user-info">
+                        <h4>Ganesh</h4>
+                        <i class="fas fa-check-circle"></i>
+                        <span>@ganesh</span>
+                    </div>
+                    <p class="post-text">
+                        This cockpit in aircraft,design was dynamic and threshold propeties in any critical
+                        conditions,Love to work in aerospace blockset and getting experience in work
+                        thank you.......
+                    </p>
+                    <div class="post-img">
+                        <img src=>
+                    </div>
+                    <div class="post-icons">
+                        <i class="far fa-comment"></i>
+                        <i class="fas fa-retweet"></i>
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="follow">
+            <h3 class="follow-heading"> Projects</h3>
+            <div class="follow-user">
+                <div class="follow-user-img">
+                    <img src=>
+                </div>
+                <div class="follow-user-info">
+                    <h4>design of thermodynamics</h4>
+                    <p>@aerospace</p>
+                </div>
+                <button type="button" class="follow-btn">Follow Project</button>
+
+
+            </div>
+            <div class="follow-user">
+                <div class="follow-user-img">
+                    <img src=>
+                </div>
+                <div class="follow-user-info">
+                    <h4>I-SERVE</h4>
+                    <p>@satwik stranger</p>
+                </div>
+                <button type="button" class="follow-btn">Follow Project</button>
+
+
+            </div>
+            <div class="follow-user">
+                <div class="follow-user-img">
+                    <img src=>
+                </div>
+                <div class="follow-user-info">
+                    <h4>CPCB</h4>
+                    <p>@satwik stranger</p>
+                </div>
+                <button type="button" class="follow-btn">Follow Project</button>
+            </div>
+            <div class="follow-link">
+                <a href="#">Show more</a>
+            </div>
+
+            <footer class="follow-footer">
+                <ul>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+
+    <!--end of feeds content-->
+    <button type="button" class="post-btn">
+        +<i class="fas fa-address-book"></i>Ideate
+    </button>
+
+<!--post modal-->
+<form>
+<div class="modal-wrapper">
+    <div class="modal">
+        <div class="modal-header">
+            <i class="fas fa-times"></i>
+            <button type="submit">Ideate</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-img">
+                <img src=>
+            </div>
+            <input type="text" placeholder="Exploring the engineering" class="modal_input" name="tweet">
+            <i class="fas fa-smile"></i>
+            <div class="modal-footer">
+                <div class="modal-icons">
+                    <i class="fas fa-image"></i>
+                    <span>+</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</form>
+
+{% endblock content %}
