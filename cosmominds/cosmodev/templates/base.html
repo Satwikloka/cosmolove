@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <link rel="stylesheet" href=https://fontawesome.com/v4.7/icons />
     <title>CosmoMinds</title>
-</head>
-<body>
+  </head>
+    <body>
 
 
 
@@ -26,21 +26,26 @@
 
 
 
+    
+
+        <div>
+    
+            {%block content%}
+        
+            {%endblock content%}  
+
+        </div>
+    
+
+    
 
 
-
-    <div>
-        {% block content %}
-        {% endblock content %}
-    </div>
+        <script src="{%static 'script.js' %}"></script>
 
 
+    </body>
 
 
-
-</body>
-
+</html>
 
 
-
-<script src="{%static 'script.js' %}"></script>

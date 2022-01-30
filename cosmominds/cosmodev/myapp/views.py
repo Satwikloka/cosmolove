@@ -3,7 +3,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import JsonResponse
-from. forms import TweetForm
+from .forms import TweetForm
+from rest_framework.parsers import JSONParser
+
+
+
+
 
 
 import random
@@ -35,6 +40,8 @@ def tweet_create_view(request):
         obj.save()
         form = TweetForm()
     return render(request,'feeds.html',context={})
+
+    
 def tweet_list_view(request,*args, **kwargs):
     qs=Tweet.objects.all()
     tweets_list=[{"id":x.id,"content":x.content,"likes":random.randint(0,999)}for x in qs]
@@ -45,17 +52,31 @@ def tweet_list_view(request,*args, **kwargs):
 
 
 def tweet_detail_view(request,tweet_id):
-    data = {
-        "id":tweet_id,
-        
-    }
-    status = 200
-    try:
+    """
+    REST API view
+    consume by JavaScript or Swift/Java/iOS/Android
+    return json data
+    """
+    if request.method == 'GET':
+        data = {
+            "id":tweet_id,
+        }
+        status = 200
+        try:
+            obj = Tweet.objects.get(id=tweet_id)
+            data['content'] = obj.content
+        except:
+            data['message'] = "Not found"
+            status = 400
+        return JsonResponse(data,status = status) #json.dumps
 
-        obj = Tweet.objects.get(id=tweet_id)
-        data['content'] =obj.content
-    except:
-        data['message'] = "Not found"
-        status = 404
+        
     
-    return JsonResponse(data,status=status)
+
+        
+
+
+
+
+
+
