@@ -1,17 +1,13 @@
-from django.contrib.messages.api import info
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.http import JsonResponse
+
 from .forms import TweetForm
-from rest_framework.parsers import JSONParser
 
 
 
 
-
-
-import random
 
 from .models import Tweet 
 
@@ -39,36 +35,32 @@ def tweet_create_view(request):
         obj = form.save(commit=False)
         obj.save()
         form = TweetForm()
-    return render(request,'feeds.html',context={})
+    return render(request,'create_view.html',context={})
 
     
-def tweet_list_view(request,*args, **kwargs):
-    qs=Tweet.objects.all()
-    tweets_list=[{"id":x.id,"content":x.content,"likes":random.randint(0,999)}for x in qs]
-    data = {
-        "response": tweets_list
+def tweet_list_view(request):
+    queryset=Tweet.objects.all()
+    print(queryset)
+    for obj in queryset:
+        print(obj.content)
+    context = {
+        "object_list":queryset
     }
-    return JsonResponse(data)
+    return render(request,"list_view.html",context)
 
-
-def tweet_detail_view(request,tweet_id):
+#Retrieve
+def tweet_detail_view(request,id):
     """
     REST API view
     consume by JavaScript or Swift/Java/iOS/Android
     return json data
     """
-    if request.method == 'GET':
-        data = {
-            "id":tweet_id,
-        }
-        status = 200
-        try:
-            obj = Tweet.objects.get(id=tweet_id)
-            data['content'] = obj.content
-        except:
-            data['message'] = "Not found"
-            status = 400
-        return JsonResponse(data,status = status) #json.dumps
+    obj = Tweet.objects.get(id=id)
+    print(obj)
+    context = {
+        "object":obj
+    }
+    return render(request,"detail_view.html", context)
 
         
     
