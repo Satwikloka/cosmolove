@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'django-insecure-9%y5*u-@5xeiwzl24x6v)4r!te-_s#2+%)k^sll$g0ui^j0wcu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
-    'rest_framework',
+    
     
 ]
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'cosmodev.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR,'templates'],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +83,9 @@ DATABASES = {
         'NAME': 'Cosmominds',
         'USER': 'postgres',
         'PASSWORD':'cosmoclaw@4444',
-        'HOST':'localhost'
+        'HOST':'localhost',
+        'PORT': '5432'
+
     }
 }
 
@@ -123,9 +125,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+STATICFILES_DIRS = ( os.path.join(BASE_DIR,"static-serve"),)
 
-STATIC_ROOT = os.path.join(BASE_DIR,'images')
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static-serve")
 
 MEDIA_URL ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
