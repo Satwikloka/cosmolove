@@ -12,8 +12,10 @@
             <a href="#"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search CosmoMinds" class="search-bar-input" />
+            <form method='GET' action='{% url "tweet:list"%}'>
+                <i class="fas fa-search" input type='submit' value='search'></i>
+                <input type="text" placeholder="Search CosmoMinds" class="search-bar-input" value='{{ request.GET.q}}'/>
+            </form>
         </div>
         <div class="user">
             <div class="user-img-wrapper">
@@ -98,19 +100,19 @@
             
         }
             <div class="post">
+                {% for object in object_list  %}
                 <div class="user-avatar">
                     <img src=>
                 </div>
                 <div class="post-content">
                     <div class="post-user-info">
-                        <h4>ISRO</h4>
+                        <h4>{{ object.user }}</h4>
                         <i class="fas fa-check-circle"></i>
                         <span>@INDIA</span>
+                        <h4> ago</h4>
                     </div>
                     <p class="post-text">
-                        This cockpit in aircraft,design was dynamic and threshold propeties in any critical
-                        conditions,Love to work in aerospace blockset and getting experience in work
-                        thank you.......
+                        {{object.content}}
                     </p>
                     <div class="post-img">
                         <img src= />
@@ -121,6 +123,14 @@
                         <i class="far fa-heart"></i>
                         <i class="fas fa-share-alt"></i>
                     </div>
+                {% empty %}
+                        {% if request.GET.q %}
+                        <p>No ideations yet..</p>
+                        {% else %}
+
+                        <p>No ideations yet..</p>
+                        {%endif%}
+                {% endfor %}
                 </div>
             </div>
             <div class="post">
@@ -286,9 +296,11 @@
     </button>
 
 <!--post modal-->
-<form>
+
 <div class="modal-wrapper">
     <div class="modal">
+        <form class = 'form' method='POST' action="">
+            {% csrf_token %}
         <div class="modal-header">
             <i class="fas fa-times"></i>
             <button type="submit">Ideate</button>
@@ -297,8 +309,11 @@
             <div class="modal-img">
                 <img src=>
             </div>
-            <input type="text" placeholder="Exploring the engineering" class="modal_input" name="tweet">
-            <i class="fas fa-smile"></i>
+            
+                <input type="text" placeholder="Exploring the engineering" class="modal_input" name="tweet">
+                {{ form.content}}
+                <i class="fas fa-smile"></i>
+            
             <div class="modal-footer">
                 <div class="modal-icons">
                     <i class="fas fa-image"></i>
@@ -307,9 +322,9 @@
             </div>
 
         </div>
+        </form> 
     </div>
 </div>
-</form>
 
 {% endblock content %}
 <script src="{%static 'script.js' %}"></script>

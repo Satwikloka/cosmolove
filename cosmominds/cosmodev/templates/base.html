@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href=https://fontawesome.com/v4.7/icons />
+    <title>CosmoMinds</title>
+  </head>
+    <body>
+
+
+
+
+
+
+
+
+
+    
+
+        <div>
+
+            {% include "navbar.html" %}
+            {% include "postmodal.html" with form=create_form action_url=create_url btn_title='Tweet' id='tweet-form' %}
+            {% include "button.html" %}
+            {% include "follow.html"%}
+    
+            {%block content%}
+            
+        
+            {%endblock content%}  
+
+        </div>
+    
+
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+        {% block script%}
+        {% endblock script%}
+
+
+        <script src="{%static 'script.js' %}"></script>
+        <script src="{%static 'ajax.js'%}"></script>
+
+
+    </body>
+
+
+</html>
+
+

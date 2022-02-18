@@ -1,8 +1,8 @@
 from .mixins import FormUserNeededMixin,UserOwnerMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-#from django.forms.utils import ErrorList
-from django.shortcuts import render, redirect
+from django import forms
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views.generic import DetailView,ListView,CreateView,UpdateView,DeleteView
@@ -17,12 +17,14 @@ from .models import Tweet
 
 
 # Create your views here.
-class TweetCreateView(FormUserNeededMixin,CreateView):
+class TweetCreateView(CreateView):
     #queryset =Tweet.objects.all()
     form_class = TweetModelForm
     template_name = 'create_view.html'
     success_url = "create"
     #login_url = '/login page/'
+
+    
 
     
 
@@ -57,7 +59,7 @@ class TweetListView(ListView):
     #queryset = Tweet.objects.all()
     def get_queryset(self,*args,**kwargs):
         queryset = Tweet.objects.all()
-        print(self.request.GET)
+        
         query = self.request.GET.get("q",None)
         if query is not None:
             queryset = queryset.filter(

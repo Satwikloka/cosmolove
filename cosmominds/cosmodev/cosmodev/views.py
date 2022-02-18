@@ -16,3 +16,5 @@ def cs(request):
         return redirect('feeds.html',context ={})
     else:
         return render(request,'cs.html')
+
+
