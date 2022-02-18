@@ -5,13 +5,13 @@
     }
     name = name.replace(/[\[\]]/g,"\\$&");
     var regex = new RegExp("[?&]") + name + "(=([^&#]*)|&|#|$)",
-        results = regex.exec(url);
+        results = regex.match(url);
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g,""));
 }
 $(document).ready(function(){
-    console.log("working");
+    
 
     var query = getParameterByName('q')
     var tweetlist = [];
@@ -36,22 +36,37 @@ $(document).ready(function(){
         }
         
     }
-    $.ajax({
-        url:"/api/tweet",
-        data:{
-            "q": query
-        },
-        method:"GET",
-        success: function(data){
-            //console.log(data)
-            tweetlist = data
-            parseTweets()
-         
-        },
-        error: function(data){
-            console.log("error")
-            console.log(data)
-        }
+    function fetchTweets(){
+        console.log("fetching...")
+        $.ajax({
+            url:"/api/tweet",
+            data:{
+                "q": query
+            },
+            method:"GET",
+            success: function(data){
+                //console.log(data)
+                tweetlist = data
+                parseTweets()
+             
+            },
+            error: function(data){
+                console.log("error")
+                console.log(data)
+            }
+        })
+
+    }
+    fetchTweets()
+    
+
+    $(".tweet-form").submit(function(event){
+        event.preventDefault()
+        var this_ = $(this)
+        
+        console.log(event)
+        console.log(this_)
+        fetchTweets()
     })
 
 

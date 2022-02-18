@@ -1,0 +1,22 @@
+
+<div class="feeds-content">                
+    <div class="feeds-header">
+        <div class="header-top">
+            <h4>Garage</h4>
+            <i class="far fa-star"></i>
+        </div>
+        <div class="header-post">
+            <div class="header-img-wrapper">
+                <img src= />
+            </div>
+            <form {% if id %} id='{{id}}'{%endif%} class = 'form' method='POST' action="{% if action_url%}"{{ action_url}} "{%endif%}">
+                {% csrf_token %}
+                <input type="text" placeholder="Document the project emotions here" />
+                <i class="far fa-image"></i>
+                <i class="fas fa-camera"></i>
+                <i class="far fa-chart-bar"></i>
+            </form>
+        </div>
+    </div>
+</div>
+        

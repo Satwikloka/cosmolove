@@ -32,9 +32,10 @@
         <div>
 
             {% include "navbar.html" %}
-            {% include "postmodal.html" with form=create_form action_url=create_url btn_title='Tweet' id='tweet-form' %}
+            {% include "postmodal.html"  %}
             {% include "button.html" %}
             {% include "follow.html"%}
+            {% include "post.html" with form=create_form action_url=create_url btn_title='Tweet' form_id='tweet-form'%}
     
             {%block content%}
             
