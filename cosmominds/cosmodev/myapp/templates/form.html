@@ -1,5 +1,5 @@
 {% load crispy_forms_tags %}
-<form {% if id %} id='{{id}}'{%endif%} class = 'form' method='POST' action="{% if action_url%}"{{ action_url}}>
+<form {% if id %} id='{{id}}'{%endif%} class = 'form' method='POST' action="{% if action_url%}"{{ action_url}}"{% endif %}">
     {% csrf_token %}
     {{ form|crispy}}
     
@@ -8,3 +8,4 @@
     
     
 </form>
+

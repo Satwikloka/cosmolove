@@ -10,7 +10,7 @@ from .views import (
 urlpatterns = [
     path('', TweetListAPIView.as_view(),name='list'),
 
-    path('create',TweetCreateAPIView.as_view(),name='create'),
+    path('/create',TweetCreateAPIView.as_view(),name='create'),
     
     
 

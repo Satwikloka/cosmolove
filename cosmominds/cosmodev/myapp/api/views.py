@@ -16,12 +16,12 @@ class TweetListAPIView(generics.ListAPIView):
 
     queryset=Tweet.objects.all()
     def get_queryset(self,*args,**kwargs):
-        queryset = Tweet.objects.all()
+        queryset = Tweet.objects.all().order_by("-timestamp")
         print(self.request.GET)
         query = self.request.GET.get("q",None)
         if query is not None:
             queryset = queryset.filter(
                 Q(content__icontains=query)|
-                Q(user__username_icontains=query)
+                Q(user__username=query)
                 )
         return queryset

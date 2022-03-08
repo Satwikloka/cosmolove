@@ -16,6 +16,18 @@ $(document).ready(function(){
     var query = getParameterByName('q')
     var tweetlist = [];
 
+    function attachTweet(value,prepend){
+        var tweetcontent = value.content;
+        var tweetuser = value.user;
+        
+        var tweetdate = value.timestamp;
+        $(".user-info").append($( tweetuser) );
+        $(".post-text").append($(tweetcontent));
+        $(".span").append($(tweetdate));
+        
+
+    }
+
 
     function parseTweets(){
         if (tweetlist==0){
@@ -25,12 +37,13 @@ $(document).ready(function(){
         } else{
             // tweet exist, parse&display them
          $.each(tweetlist,function(key,value){
-                
             var tweetkey = key;
-            var tweetcontent = value.content;
-            var tweetUser = value.user;
-            $(".user-info").append( tweetUser );
-            $(".post-text").append(tweetcontent);
+            attachTweet(value)
+
+            
+                
+            
+
             
          })
         }
@@ -64,9 +77,30 @@ $(document).ready(function(){
         event.preventDefault()
         var this_ = $(this)
         
-        console.log(event)
-        console.log(this_)
-        fetchTweets()
+        //console.log(event)
+        //console.log()
+
+        var formData = this_.serialize()
+        $.ajax({
+            url:"/api/tweet/create",
+            data:formData,
+            method:"POST",
+            success: function(data){
+                attachTweet(data)
+                //console.log(data)
+                //fetchTweets()
+                //tweetlist = data
+                //parseTweets()
+             
+            },
+            error: function(data){
+                console.log("error")
+                console.log(data.statusText)
+                console.log(data.status)
+            }
+        })
+
+        
     })
 
 
