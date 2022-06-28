@@ -121,6 +121,13 @@ modalX .addEventListener('click', () =>{
       sidebarWrapper.classList.remove('sidebar-wrapper-display');
   });
 
+
+//ajax
+
+
+        
+
+
   
     
     

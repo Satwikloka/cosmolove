@@ -33,6 +33,8 @@ class TweetModelSerializer(serializers.ModelSerializer):
             'timestamp',
             
             
+            
+            
         ]
 
 

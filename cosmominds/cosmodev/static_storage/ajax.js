@@ -1,4 +1,7 @@
-  //posts tweet
+
+
+
+  
   function getParameterByName(name,url) {
     if (!url){
         url = window.location.href;
@@ -10,47 +13,39 @@
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g,""));
 }
+
+
+
+
+
+    
+
+
+
 $(document).ready(function(){
     
 
     var query = getParameterByName('q')
-    var tweetlist = [];
+    
+    
 
-    function attachTweet(value,prepend){
-        var tweetcontent = value.content;
-        var tweetuser = value.user;
+    
+
+
         
-        var tweetdate = value.timestamp;
-        $(".user-info").append($( tweetuser) );
-        $(".post-text").append($(tweetcontent));
-        $(".span").append($(tweetdate));
         
 
-    }
-
-
-    function parseTweets(){
-        if (tweetlist==0){
-            $(".user-info").text("No projects found you serched.");
-            $(".post-text").text("No ideations produced yet!");
-
-        } else{
-            // tweet exist, parse&display them
-         $.each(tweetlist,function(key,value){
-            var tweetkey = key;
-            attachTweet(value)
-
-            
+        
                 
-            
-
-            
-         })
-        }
         
-    }
-    function fetchTweets(){
-        console.log("fetching...")
+        
+    
+
+
+    
+    var count = 0;
+    function fetchTweets(cnt){
+        console.log("fetching...");
         $.ajax({
             url:"/api/tweet",
             data:{
@@ -58,22 +53,28 @@ $(document).ready(function(){
             },
             method:"GET",
             success: function(data){
-                //console.log(data)
-                tweetlist = data
-                parseTweets()
-             
+                
+                
+                if(data[cnt]){
+                    var patch = '<div class="feeds-content"><div class="posts" id="tweet"><div class="post"><div class="user-avatar"><img src=></div><div class="post-content"><div class="post-user-info"><h4 id="tweetuser" class="user-info">'+data[cnt]["user"]["username"]+'</h4><i class="fas fa-check-circle"></i><span class="span">@'+data[cnt]["user"]["last_name"]+'</span><h4 class="datetime">'+data[cnt]["timestamp"]+'ago</h4></div><p id="content" class="post-text">'+data[cnt]["content"]+'</p><div class="post-img"><img src= /></div><div class="post-icons"><i class="far fa-comment"></i><i class="fas fa-retweet"></i><i class="far fa-heart"></i><i class="fas fa-share-alt"></i></div></div></div></div></div></div>';
+                    document.getElementById("container").innerHTML = document.getElementById("container").innerHTML + patch;
+                    document.getElementsByTagName("p").innerHTML = document.getElementsByTagName("p").innerHTML + patch;
+                    document.getElementsByTagName("span").innerHTML = document.getElementsByTagName("span").innerHTML + patch;
+                    document.getElementsByTagName("h4").innerHTML= document.getElementsByTagName("h4").innerHTML + patch;
+                    count++;
+                }
+                parseTweets();
             },
             error: function(data){
                 console.log("error")
                 console.log(data)
             }
         })
-
     }
-    fetchTweets()
-    
+    //fetchTweets(count);
+    setInterval(function(){fetchTweets(count);},1000);
 
-    $(".tweet-form").submit(function(event){
+    $(".form").submit(function(event){
         event.preventDefault()
         var this_ = $(this)
         
@@ -86,9 +87,9 @@ $(document).ready(function(){
             data:formData,
             method:"POST",
             success: function(data){
-                attachTweet(data)
+                
                 //console.log(data)
-                //fetchTweets()
+                fetchTweets(data)
                 //tweetlist = data
                 //parseTweets()
              

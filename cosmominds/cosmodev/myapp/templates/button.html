@@ -1,6 +1,9 @@
-<!--post modal-->
+{%block content%}
+<button type="button" id="postbtn" class="post-btn">
+    +<i class="fas fa-address-book"></i>Ideate
+</button>
 {% load crispy_forms_tags %}
-<form {% if id %} id='{{id}}'{%endif%} class = 'form' method='POST' action="{% if action_url%}"{{ action_url}}"{%endif%}">
+<form {% if id %} id='{{id}}'{%endif%} class = 'form' method='POST' action="{% if action_url%}"{{ action_url}}"{%endif%}>
     {% csrf_token %}
     <div class="modal-wrapper">
         <div class="modal">
@@ -26,3 +29,4 @@
     </div>
 </form>
 <!-- end of post modal-->
+{%endblock content%} 

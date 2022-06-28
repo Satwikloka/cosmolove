@@ -13,16 +13,19 @@ from django.urls import reverse_lazy
 
 
 
+
 from .models import Tweet 
 
 
 # Create your views here.
-class TweetCreateView(CreateView):
+class TweetCreateView(FormUserNeededMixin,CreateView):
     #queryset =Tweet.objects.all()
     form_class = TweetModelForm
     template_name = 'create_view.html'
-    success_url = "create"
-    #login_url = '/login page/'
+    success_url = "tweet:create"
+    login_url = '/loginpage/'
+
+  
 
     
 
@@ -55,7 +58,7 @@ class TweetDetailView(DetailView):
 
 
 class TweetListView(ListView):
-    template_name = "list_view.html" 
+    template_name = "tweetlist.html" 
     #queryset = Tweet.objects.all()
     def get_queryset(self,*args,**kwargs):
         queryset = Tweet.objects.all()
@@ -70,6 +73,8 @@ class TweetListView(ListView):
 
     def get_context_data(self,*args ,**kwargs):
         context = super(TweetListView,self).get_context_data(*args,**kwargs)
+        context['create_form'] = TweetModelForm()
+        context['create_url'] = reverse_lazy("tweet:create")
         return context
 
 #delete view
