@@ -1,29 +1,28 @@
 
-{%extends 'base.html'%}
+
 {%block content%}
-<section class="feeds-page">
-    <!--feeds nav-->
-    <nav class="feeds-nav">
-        <div class="icons">
+
+<nav class="feeds-nav">
+    <div class="icons">
             <a href="#" class="active"><i class="fas fa-home"></i></a>
             <a href="#"><i class="fas fa-hashtag"></i></a>
             <a href="#"><i class="far fa-bell"></i></a>
             <a href="#"><i class="fas fa-envelope"></i></a>
-        </div>
-        <div class="search-bar">
-            <form method='GET' action='{% url "tweet:list"%}'>
-                <i class="fas fa-search" <input type='submit' value='search'/> ></i>
+    </div>
+    <div class="search-bar">
+        <form method='GET' action='{% url "tweet:list"%}'>
+                <i class="fas fa-search" input type='submit' value='search'/> </i>
                 <input type="text" placeholder="Search CosmoMinds" class="search-bar-input" value='{{ request.GET.q}}'/>
-            </form>
+        </form>
+    </div>
+    <div class="user">
+        <div class="user-img-wrapper">
+            <img src= >
         </div>
-        <div class="user">
-            <div class="user-img-wrapper">
-                <img src= >
-            </div>
             <a href="#" class="user-link">Chakri Chax</a>
             <i class="fas fa-chevron-down"></i>
-        </div>
-    </nav>
-    {%endblock content%}
+    </div>
+</nav>
+{%endblock content%}
 
     <!--end of feeds page-->

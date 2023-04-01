@@ -1,13 +1,17 @@
+from audioop import reverse
+from sre_constants import SUCCESS
 from .mixins import FormUserNeededMixin,UserOwnerMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.db.models import Q
-from django import forms
+
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views.generic import DetailView,ListView,CreateView,UpdateView,DeleteView
 from .forms import TweetModelForm
 from django.urls import reverse_lazy
+from django.contrib.auth import get_user_model
 
 
 
@@ -21,9 +25,20 @@ from .models import Tweet
 class TweetCreateView(FormUserNeededMixin,CreateView):
     #queryset =Tweet.objects.all()
     form_class = TweetModelForm
-    template_name = 'create_view.html'
-    success_url = "tweet:create"
-    login_url = '/loginpage/'
+    
+    template_name = 'tweetlist.html'
+
+user = get_user_model
+
+class UserDetailView(DetailView):
+    queryset=User.objects
+   
+        
+
+    
+    #success_url: reverse_lazy("tweet:create")
+    #login_url = '/admin/'
+
 
   
 
@@ -33,11 +48,11 @@ class TweetCreateView(FormUserNeededMixin,CreateView):
 
     #
 # update
-class TweetUpdateView(LoginRequiredMixin,UserOwnerMixin,UpdateView):
+class TweetUpdateView(UserOwnerMixin,UpdateView):
     queryset = Tweet.objects.all()
     form_class = TweetModelForm
     template_name = 'update_view.html'
-    success_url = "/tweet/"
+   # success_url = "tweet/"
     
 
 
@@ -74,14 +89,14 @@ class TweetListView(ListView):
     def get_context_data(self,*args ,**kwargs):
         context = super(TweetListView,self).get_context_data(*args,**kwargs)
         context['create_form'] = TweetModelForm()
-        context['create_url'] = reverse_lazy("tweet:create")
+        context['create_url'] = reverse_lazy('tweet:list')
         return context
 
 #delete view
-class TweetDeleteView(LoginRequiredMixin,DeleteView):
+class TweetDeleteView(DeleteView):
     model = Tweet
     template_name = "delete_confirm.html"
-    success_url = reverse_lazy("tweet:list")
+    success_url = reverse_lazy('tweet:list')
 #
 
 

@@ -13,6 +13,10 @@
             <form {% if id %} id='{{id}}'{%endif%} class = 'form' method='POST' action="{% if action_url%}"{{ action_url}}"{% endif %}"> 
                 {% csrf_token %}   
                 <input type="text" placeholder="Document the project emotions here" />
+                <div class="modal-header">
+                    
+                    <button  type="submit" value="{{btn_title}}">Ideate</button>
+                </div>
                 <i class="far fa-image"></i>
                 <i class="fas fa-camera"></i>
                 <i class="far fa-chart-bar"></i>

@@ -21,16 +21,20 @@ class UserDisplaySerializer(serializers.ModelSerializer):
         return 0
 
 class TweetModelSerializer(serializers.ModelSerializer):
-    user=UserDisplaySerializer(serializers.ModelSerializer)
+    user=UserDisplaySerializer(read_only=True)
+    sid=serializers.ReadOnlyField()
     
-    timestamp = serializers.SerializerMethodField
+    
+    
+    
     
     class Meta:
         model = Tweet
         fields =[
+            'sid',
             'user',
             'content',
-            'timestamp',
+            'timestamp'
             
             
             

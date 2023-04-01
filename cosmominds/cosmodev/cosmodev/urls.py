@@ -18,12 +18,13 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from .views import cs
+
  
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
     
     path('tweet/', include(('myapp.urls','tweet'),namespace='tweet')),
     path('api/tweet',include(('myapp.api.urls','tweet-api'), namespace='tweet-api')),

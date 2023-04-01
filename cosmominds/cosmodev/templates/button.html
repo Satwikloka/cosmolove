@@ -1,0 +1,25 @@
+{%block content%}
+
+{% load crispy_forms_tags %}
+<form {% if id %} id='{{id}}'{%endif%} class = 'form' method='POST' action="{% if action_url%}"{{ action_url}}"{%endif%}>
+    {% csrf_token %}
+    <div class="modal-wrapper">
+        <div class="modal">
+            <div class="modal-header">
+                <i class="fas fa-times"></i>
+                <button type="submit">Ideate</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img src=>
+                </div>
+                <input type="text" placeholder="Exploring the engineering" class="modal-input">
+                
+                
+
+            </div>
+        </div>
+    </div>
+</form>
+<!-- end of post modal-->
+{%endblock content%} 

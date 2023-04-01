@@ -17,7 +17,7 @@ from .validators import validate_content
 class Tweet(models.Model):
    # Maps to postgresql data
 
-   id = models.TextField(primary_key=True,null=False,blank=True)
+   sid = models.AutoField(primary_key=True,null=False)
    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
    content = models.TextField(max_length =240,validators=[validate_content])
    updated = models.DateTimeField(auto_now=True)
@@ -26,13 +26,9 @@ class Tweet(models.Model):
       return (self.content)
 
    def get_absolute_url(self):
-       return reverse("tweet_detail", kwargs={"pk": self.pk})
+       return reverse ("tweet:detail", kwargs={"pk": self.pk})
    
 
    #
 
-class User(models.Model):
-   user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
-   def __str__(self):
-      return self.user
