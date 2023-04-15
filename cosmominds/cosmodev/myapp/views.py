@@ -8,8 +8,9 @@ from django.db.models import Q
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.views.generic import DetailView,ListView,CreateView,UpdateView,DeleteView
+from django.views.generic import DetailView,ListView,CreateView,UpdateView,DeleteView,RedirectView
 from .forms import TweetModelForm
+from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 
@@ -22,6 +23,13 @@ from .models import Tweet
 
 
 # Create your views here.
+
+class BusinessPageView(TemplateView):
+    template_name='businesscard.html'
+class InterfacePageView(TemplateView):
+    template_name='interface.html'
+class MainPageView(TemplateView):
+    template_name='mainpage.html'
 class TweetCreateView(FormUserNeededMixin,CreateView):
     #queryset =Tweet.objects.all()
     form_class = TweetModelForm

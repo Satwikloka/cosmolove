@@ -80,6 +80,7 @@ $(document).ready(function(){
     //fetchTweets(count);
     setInterval(function(){fetchTweets(count);},1000);
     fetchTweets(data);
+    console.log(data)
 
 const tweetForm = document.getElementById("tweet-form")
     
