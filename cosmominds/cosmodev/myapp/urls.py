@@ -4,10 +4,22 @@ from django.conf.urls import include
 from django.views.generic.base import RedirectView
 
 
-from .views import( TweetListView,TweetDetailView,TweetCreateView,TweetUpdateView,TweetDeleteView,UserDetailView,RedirectView,MainPageView,BusinessPageView,InterfacePageView)
+from .views import( TweetListView,
+                    TweetDetailView,
+                    TweetCreateView,
+                    TweetUpdateView,
+                    TweetDeleteView,
+                    UserDetailView,
+                    RedirectView,
+                    MainPageView,
+                    BusinessPageView,
+                    InterfacePageView,
+                    EditorChartView
+                    )
 
 app_name='tweet'
 urlpatterns = [
+    path('charts', EditorChartView.as_view(), name='charts'),
     path('interface',InterfacePageView.as_view(),name='interface'),
     path('business',BusinessPageView.as_view(),name='business'),
     path('login',MainPageView.as_view(),name='login'),
@@ -19,7 +31,7 @@ urlpatterns = [
     
 
     path('<pk>',TweetDetailView.as_view(),name='detail'),
-    
+   
     
 
 

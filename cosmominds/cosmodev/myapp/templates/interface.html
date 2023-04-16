@@ -2,7 +2,36 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<style>
+  .column {
+    float: left;
+    width: 50%;
+    align:center;
+    padding-top:100px;
+    
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  .column2
+  {
+    padding-top:100px;
+  }
+  .column1
+  {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    background-color:#ADC8F2;
+    height: 1920px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+      }
+</style>
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +46,11 @@
     <link rel="stylesheet" href=https://fontawesome.com/v4.7/icons />
     <title>CosmoMinds</title>
   </head>
+  {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> {% endcomment %}
     <body>
-            <div class="interface">
+        <div class ="row">
+        
+            <div class="column1">
                 <div class="sidebar-header">
                     <h1 >Analytical interface</h1>
                     <i class="fas fa-times"></i>
@@ -56,11 +88,89 @@
                 </div>
             </div>
         
-        <!--end of feed page-->
+
+            <div class="coloumn2">
+
+                
+
+                <canvas id="myChart" style="width:100%;max-width:600px;padding-top:100px"></canvas>
+
+                <script>
+                var xValues = ["Technical Learning", "Emotional intelligence", "Confidence", "work Time", "Health"];
+                var yValues = [55, 49, 44, 24, 15];
+                var barColors = ["red", "green","blue","orange","brown"];
+                
+                new Chart("myChart", {
+                  type: "bar",
+                  data: {
+                    labels: xValues,
+                    datasets: [{
+                      backgroundColor: barColors,
+                      data: yValues
+                    }]
+                  },
+                  options: {
+                    legend: {display: false},
+                    title: {
+                      display: true,
+                      text: "Productivity BarGraph"
+                    }
+                  }
+                });
+                </script>
+                
+                    </div>
+                 
+
+            </div>
+
+        
+         <!--end of feed page-->
     
     
     
         
-        
+        </div>
     </body>
 </html>
+
+
+{% comment %} 
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+{% endcomment %}

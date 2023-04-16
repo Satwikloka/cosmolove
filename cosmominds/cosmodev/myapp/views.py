@@ -13,6 +13,8 @@ from .forms import TweetModelForm
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
+from chartjs.views.lines import BaseLineChartView
+from.models import Tweet
 
 
 
@@ -123,3 +125,10 @@ class TweetDeleteView(DeleteView):
 
 #Retrieve
 #
+class EditorChartView(TemplateView):
+    template_name = 'line_chart.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["qs"] = Tweet.objects.all()
+        return context

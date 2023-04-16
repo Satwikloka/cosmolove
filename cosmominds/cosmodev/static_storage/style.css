@@ -898,11 +898,11 @@ body {
     font-weight:bold;
 }
 .sidebar-list-1{
-    border-bottom:0.1rem solid #eee;
+    border-bottom:0.1rem solid #56b3db;
 }
 .sidebar-list-1 ul{
     list-style:none;
-    padding:1.5rem 0;
+    padding:1.5rem 10;
 }
 
 .sidebar-list-1 li{
@@ -936,38 +936,3 @@ body {
 /*end of feeds page*/
 
 /*responsive*/
-.contact-card {
-    width: 720px;
-    height: 360px;
-    background-color: blue;
-    padding: 20px;
-    box-sizing: border-box;
-    color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .contact-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-  }
-  
-  .contact-card h2 {
-    font-size: 32px;
-    margin-bottom: 10px;
-  }
-  
-  .contact-card p {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  .interface
-    {
-        background-color: #117abb;
-        display: block;
-    }
