@@ -20,13 +20,13 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 
-
+from .views import(IndexViewPage)
  
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-   
+    path('dashboard',IndexViewPage.as_view(),name='dashboard'),
     
     path('tweet/', include(('myapp.urls','tweet'),namespace='tweet')),
     path('api/tweet',include(('myapp.api.urls','tweet-api'), namespace='tweet-api')),
