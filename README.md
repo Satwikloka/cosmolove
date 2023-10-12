@@ -1,4 +1,5 @@
 # Virtual Reality Chat Application with Data Analytics and Networking
+Achievements of this project: Selected for Nation wide Top 30 builders from Google developer student clubs
 
 This project is a Virtual Reality (VR) Chat Application that offers a unique user experience by combining virtual reality with real-time communication. The application is designed to have four main tabs: Chat, Virtual Reality Experience, Data Analytics, and Networking. Each tab serves a specific purpose and enhances the overall user experience.
 
@@ -73,6 +74,6 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use and 
 ## Contact
 
 For inquiries or assistance, please contact:
-- [Your Name](mailto:you@example.com)
+- satwikloka321@gmail.com
 
 Enjoy the virtual reality experience and happy chatting!
